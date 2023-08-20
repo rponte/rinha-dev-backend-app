@@ -39,6 +39,9 @@ public class Pessoa {
     @ElementCollection
     private List<@NotBlank @Size(max = 32) String> stack = new ArrayList<>();
 
+    @Deprecated
+    public Pessoa(){}
+
     public Pessoa(String apelido, String nome, LocalDate nascimento) {
         this.apelido = apelido;
         this.nome = nome;
