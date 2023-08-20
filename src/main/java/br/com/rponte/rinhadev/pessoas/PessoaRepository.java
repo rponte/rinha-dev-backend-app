@@ -18,6 +18,8 @@ public interface PessoaRepository extends JpaRepository<Pessoa, UUID> {
             select p 
               from Pessoa p
              where p.apelido like %:texto%
+                or p.nome like %:texto%
+                or p.stack like %:texto%
           order by p.apelido
             """)
     public List<Pessoa> findByApelidoOrNomeOrStack(String texto, Pageable pageable);
