@@ -1,0 +1,37 @@
+schema-version: v1
+kind: manifest
+metadata:
+  name: rinha-dev-backend
+  description: Aplicação para Rinha de devs backend
+  starter: coffee-studio/java-springboot-restapi-stack/rest-api-with-spring-data-jpa
+  stack-version-id: 01H712KE3W0WTRPNEF5HP9VFR2
+  stack: java-springboot-restapi-stack
+spec:
+  type: app
+  plugins:
+    - name: coffee-studio/java-springboot-restapi-stack/java-springboot-restapi-base-plugin@0.0.2
+      plugin-version-id: 01H6XPQCNMVMY6EHAZVCE64S8P
+      stack-version-id: 01H712KE3W0WTRPNEF5HP9VFR2
+      type: app
+      inputs:
+        project_name: rinhadev
+        project_description: Aplicação para Rinha de devs backend
+        project_springboot_version: 2.7.2
+        project_group_id: br.com.rponte
+        project_artifact_id: rinhadev
+        project_version: 0.0.1-SNAPSHOT
+      inputs-envs: {}
+      connectors: []
+    - name: coffee-studio/java-springboot-restapi-stack/java-spring-data-jpa-plugin@0.0.1
+      plugin-version-id: 01H70RABAZR0JFYN6MK2MZS256
+      stack-version-id: 01H712KE3W0WTRPNEF5HP9VFR2
+      type: app
+      inputs:
+        package: br.com.rponte.rinhadev
+        path_code_directory: src.main.java.br.com.rponte.rinhadev
+        path_test_code_directory: src.test.java.br.com.rponte.rinhadev
+        database_name: PostgreSQL
+      inputs-envs: {}
+      connectors: []
+  global-inputs: {}
+  global-computed-inputs: {}
