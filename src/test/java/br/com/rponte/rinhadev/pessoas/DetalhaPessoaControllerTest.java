@@ -55,7 +55,7 @@ class DetalhaPessoaControllerTest {
 
         // action (and validation)
         for (Pessoa p : existentes) {
-            mockMvc.perform(get("/pessoas/" + p.getId())
+            mockMvc.perform(get("/pessoas/{id}", p.getId())
                             .header(HttpHeaders.ACCEPT_LANGUAGE, "en"))
                     .andExpect(status().isOk())
                     .andExpect(jsonPath("id").value(p.getId().toString()))
@@ -77,7 +77,7 @@ class DetalhaPessoaControllerTest {
         );
 
         // action (and validation)
-        mockMvc.perform(get("/pessoas/" + p.getId())
+        mockMvc.perform(get("/pessoas/{id}", p.getId())
                         .header(HttpHeaders.ACCEPT_LANGUAGE, "en"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id").value(p.getId().toString()))
@@ -95,7 +95,7 @@ class DetalhaPessoaControllerTest {
         UUID pessoaNaoExistenteId = UUID.randomUUID();
 
         // action (and validation)
-        mockMvc.perform(get("/pessoas/" + pessoaNaoExistenteId)
+        mockMvc.perform(get("/pessoas/{id}", pessoaNaoExistenteId)
                         .header(HttpHeaders.ACCEPT_LANGUAGE, "en"))
                 .andExpect(status().isNotFound())
                 .andExpect(header().string(HttpHeaders.CONTENT_TYPE, is(MediaTypes.PROBLEM_VALUE)))
