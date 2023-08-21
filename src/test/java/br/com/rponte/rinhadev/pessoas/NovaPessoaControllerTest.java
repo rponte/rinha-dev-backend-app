@@ -1,6 +1,5 @@
 package br.com.rponte.rinhadev.pessoas;
 
-import br.com.rponte.rinhadev.samples.authors.NewAuthorRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +22,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -103,7 +101,7 @@ class NovaPessoaControllerTest {
                 "a".repeat(33),
                 "b".repeat(101),
                 LocalDate.now().plusDays(1),
-                List.of("ok1", "ok2", "ok3")
+                List.of("ok1", "", "ok2")
         );
 
         // action (and validation)
@@ -116,11 +114,12 @@ class NovaPessoaControllerTest {
                 .andExpect(jsonPath("$.type", is("https://zalando.github.io/problem/constraint-violation")))
                 .andExpect(jsonPath("$.title", is("Constraint Violation")))
                 .andExpect(jsonPath("$.status", is(400)))
-                .andExpect(jsonPath("$.violations", hasSize(3)))
+                .andExpect(jsonPath("$.violations", hasSize(4)))
                 .andExpect(jsonPath("$.violations", containsInAnyOrder(
                                 violation("apelido", "size must be between 0 and 32"),
                                 violation("nome", "size must be between 0 and 100"),
-                                violation("nascimento", "must be a past date")
+                                violation("nascimento", "must be a past date"),
+                                violation("stack[1]", "must not be blank")
                         )
                 ))
         ;
