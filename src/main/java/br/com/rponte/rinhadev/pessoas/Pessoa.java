@@ -91,11 +91,13 @@ public class Pessoa {
     /**
      * Adiciona nova stack a pessoa
      */
-    public void adicionaStack(String novaStack) {
+    public Pessoa adicionaStack(String novaStack) {
+
         Assert.hasLength(novaStack, "stack não pode ser nula ou vazia");
-        Assert.isTrue(novaStack.length() <= 32, "stack deve ter máximo de 32 caracteres");
+        Assert.isTrue(novaStack.length() <= 32, "stack deve ter tamanho máximo de 32 caracteres");
 
         this.stack.add(novaStack);
+        return this;
     }
 
 }
