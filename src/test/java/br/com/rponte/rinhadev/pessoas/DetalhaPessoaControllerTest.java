@@ -1,18 +1,13 @@
 package br.com.rponte.rinhadev.pessoas;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import br.com.rponte.rinhadev.base.SpringBootIntegrationTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpHeaders;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.web.servlet.MockMvc;
 import org.zalando.problem.spring.common.MediaTypes;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,17 +15,8 @@ import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@SpringBootTest
-@ActiveProfiles("test")
-@AutoConfigureMockMvc(printOnlyOnFailure = false)
-class DetalhaPessoaControllerTest {
+class DetalhaPessoaControllerTest extends SpringBootIntegrationTest {
 
-    private static LocalDate TODAY = LocalDate.now();
-
-    @Autowired
-    private MockMvc mockMvc;
-    @Autowired
-    private ObjectMapper mapper;
     @Autowired
     private PessoaRepository repository;
 

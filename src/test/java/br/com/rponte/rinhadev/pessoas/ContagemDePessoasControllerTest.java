@@ -1,14 +1,11 @@
 package br.com.rponte.rinhadev.pessoas;
 
+import br.com.rponte.rinhadev.base.SpringBootIntegrationTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpHeaders;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,15 +14,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
-@ActiveProfiles("test")
-@AutoConfigureMockMvc(printOnlyOnFailure = false)
-class ContagemDePessoasControllerTest {
+class ContagemDePessoasControllerTest extends SpringBootIntegrationTest {
 
-    private static LocalDate TODAY = LocalDate.now();
-
-    @Autowired
-    private MockMvc mockMvc;
     @Autowired
     private PessoaRepository repository;
 
