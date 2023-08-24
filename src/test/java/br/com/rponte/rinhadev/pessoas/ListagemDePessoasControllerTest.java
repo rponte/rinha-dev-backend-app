@@ -9,9 +9,7 @@ import org.springframework.http.HttpHeaders;
 
 import java.util.List;
 
-import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.hasSize;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -83,7 +81,7 @@ class ListagemDePessoasControllerTest extends SpringBootIntegrationTest {
     @DisplayName("deve encontrar pessoas por apelido, nome e stack")
     public void t4() throws Exception {
         // action (and validation)
-        String termo = "java";
+        String termo = "JAVA";
         mockMvc.perform(get("/pessoas?t={termo}", termo)
                         .header(HttpHeaders.ACCEPT_LANGUAGE, "en"))
                 .andExpect(status().isOk())
