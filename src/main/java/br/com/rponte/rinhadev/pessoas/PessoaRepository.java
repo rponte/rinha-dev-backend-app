@@ -27,9 +27,10 @@ public interface PessoaRepository extends JpaRepository<Pessoa, UUID> {
     @Query( """
             select p 
               from Pessoa p
-             where p.apelido like %:texto%
-                or p.nome like %:texto%
-                or p.stack like %:texto%
+              left join fetch p.stack stack
+             where lower(p.apelido) like concat('%', lower(:texto), '%')
+                or lower(p.nome)    like concat('%', lower(:texto), '%')
+                or lower(stack)     like concat('%', lower(:texto), '%')
           order by p.apelido
             """)
     public List<Pessoa> findByApelidoOrNomeOrStack(String texto, Pageable pageable);

@@ -53,7 +53,7 @@ spring:
                     provider_disables_autocommit: true
                 query:
                     in_clause_parameter_padding: true
-                    fail_on_pagination_over_collection_fetch: true
+                    fail_on_pagination_over_collection_fetch: false
                     plan_cache_max_size: 4096
     output:
         ansi:
